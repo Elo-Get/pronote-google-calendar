@@ -33,7 +33,7 @@ class Calendar {
      */
     getDescription() {
 
-        let teacher = this.teatcher !== undefined ? ' (professeur :' + this.teatcher + ') ' : ''
+        let teacher = this.teatcher !== undefined ? ' (professeur : ' + this.teatcher + ') ' : ''
         let mark = this.lastMark !== null ? '\n' + this.lastMark : '';
         let homework = this.homework !== null ? this.homework : '';
 
