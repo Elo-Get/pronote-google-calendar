@@ -59,7 +59,7 @@ Got to the .env file:
 
 => node server.mjs
 
-## The API use two other API
+## This API use two other API
 
 * Pronote API develop by Litarvan (https://github.com/Litarvan/pronote-api)
 * Google Calendar API for node.js (https://developers.google.com/calendar/quickstart/nodejs)
