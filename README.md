@@ -7,8 +7,14 @@ Export your pronote timetable in your google calendar
 * Your pronote login codes pronote ( if you forgot them, you can also use the "found my password" solution
 * Create an google app developper with google calendar API ( in your google account )
 * Connect your google app in oauthplayground to recover a key
+* Node.js v13
+
+# Before All:
+
+1. In cmd go to the folder path and taps 'npm install'
 
 # Setup the API
+
 
 # 1. Create Google App
 
@@ -48,6 +54,10 @@ Got to the .env file:
 3. 'PRONOTE_URL' is your pronote url connexion
 
 => If you have problem with the pronote connection you can check the pronote API that we used to this app. (https://github.com/Litarvan/pronote-api)
+
+## Run the App
+
+=> node server.mjs
 
 ## The API use two other API
 
