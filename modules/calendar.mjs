@@ -69,10 +69,32 @@ class Calendar {
     }
 
     /*
+    Create new event with check if event already exist
+     */
+    createEvent() {
+        let checkEvent = 0;
+        this.userEvents.forEach((value) => {
+            if (value['summary'] == this.name || value['summary'] == this.name + '(ANNULE)') {
+                let start = new Date(value['start']);
+                let end = new Date(value['end']);
+                if (getDate.getDate(this.start_event) === getDate.getDate(start) && getDate.getDate(this.end_event) === getDate.getDate(end)) {
+                    checkEvent += 1;
+                }
+            }
+        });
+        if (checkEvent === 0) {
+            this.insertNewEvents();
+        } else {
+            this.updateEvent();
+            return console.log('Event updated !');
+        }
+    }
+
+    /*
     Permit to create an google calendar event
     return bool
      */
-    createEvent() {
+    insertNewEvents() {
 
         this.calendar.freebusy.query(
             {
@@ -104,10 +126,6 @@ class Calendar {
 
                 }
 
-                // Update des Events
-
-                this.updateEvent();
-
                 return console.log('Evenement existant !')
             }
         )
@@ -124,16 +142,15 @@ class Calendar {
         let eventId = this.fetchNextEventsId();
 
         if (eventId === null) return;
-        let request = this.calendar.patch(
+        this.calendar.events.patch(
             {
             'calendarId' : 'primary',
-            'evendId' : eventId,
-            'ressource' : this.getJson()
+            'eventId' : eventId,
+            'resource' : this.getJson()
             }
         );
-        request.execute((event) => {
-            console.log(event);
-        })
+
+
 
 
     }
@@ -144,16 +161,20 @@ class Calendar {
      */
     fetchNextEventsId() {
 
+        let result = '';
 
         this.userEvents.forEach((value) => {
-            var start = new Date(value['start']);
-            var end = new Date(value['end']);
-            if (this.name === value['summary'] && getDate.getDate(this.start_event) === getDate.getDate(start) && getDate.getDate(this.end_event) === getDate.getDate(end)) {
-                return value['idEvent'];
+            let start = new Date(value['start']);
+            let end = new Date(value['end']);
+            if (getDate.getDate(this.start_event) === getDate.getDate(start) && getDate.getDate(this.end_event) === getDate.getDate(end)) {
+                if (this.name === value['summary'] || this.name + '(ANNULE)' === value['summary']) {
+                    result = value['idEvent'];
+                }
+
             }
         });
 
-        return null;
+        return result;
 
 
     }
