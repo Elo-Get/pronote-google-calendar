@@ -13,6 +13,16 @@ const getDate = (date) => {
     return result;
 }
 
+const getDateTime = (date) => {
+    date = date.toString();
+    var result = '';
+    for (var i = 0; i < 21; i++) {
+        result += date[i];
+    }
+    return result;
+}
+
 module.exports = {
-    getDate
+    getDate,
+    getDateTime
 }
