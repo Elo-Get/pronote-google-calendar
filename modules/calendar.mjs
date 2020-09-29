@@ -77,8 +77,10 @@ class Calendar {
             if (value['summary'] == this.name || value['summary'] == this.name + '(ANNULE)') {
                 let start = new Date(value['start']);
                 let end = new Date(value['end']);
-                if (getDate.getDate(this.start_event) === getDate.getDate(start) && getDate.getDate(this.end_event) === getDate.getDate(end)) {
+                if (getDate.getDateTime(this.start_event) === getDate.getDateTime(start) && getDate.getDateTime(this.end_event) === getDate.getDateTime(end)) {
                     checkEvent += 1;
+                } else {
+                    checkEvent = 0;
                 }
             }
         });
