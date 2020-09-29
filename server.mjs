@@ -32,22 +32,22 @@ async function main()
 
     const timetable = await session.timetable(); // Get timetable of student
     const homework = await session.homeworks(); //  Get homeworks of student
-    const events = await userEvents.Events(calendar); // Get google events of studen
-    const marks = await session.marks();
+    const marks = await session.marks();    //  Get marks of student
+    const events = await userEvents.Events(calendar);   //   Get google events of student
 
+    if (timetable.length === 0) return console.log('No lessons planned');
 
-    if (timetable.length === 0) return;
     timetable.forEach((obj) => {
 
 
         let homeworks = Homeworks.getHomeworks(homework, obj['subject'], obj['from']);
-        
-
 
 
         let lastMark = getMarks.getMarks(marks, obj['subject']);
-        let event = new Calendar(obj['subject'], obj['room'], obj['from'], obj['to'], obj['isCancelled'], obj['teacher'],homeworks !== null ? homeworks : '', events, calendar, lastMark);
+        const event = new Calendar(obj['subject'], obj['room'], obj['from'], obj['to'], obj['isCancelled'], obj['teacher'],homeworks !== null ? homeworks : '', events, calendar, lastMark);
         event.createEvent();
+
+
 
 
 
