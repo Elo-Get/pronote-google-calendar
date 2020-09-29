@@ -32,6 +32,7 @@ async function main()
 
     const timetable = await session.timetable(); // Get timetable of student
     const homework = await session.homeworks(); //  Get homeworks of student
+    const events = await userEvents.Events(calendar); // Get google events of studen
     const marks = await session.marks();
 
 
@@ -40,7 +41,7 @@ async function main()
 
 
         let homeworks = Homeworks.getHomeworks(homework, obj['subject'], obj['from']);
-        let events = userEvents.Events(calendar);
+        
 
 
 
