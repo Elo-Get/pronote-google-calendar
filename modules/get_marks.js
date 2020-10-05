@@ -13,7 +13,12 @@ const getMarks = (marks, summary) => {
     marks['subjects'].forEach((value) => {
         //console.log(value['name'] + ' => '+ summary);
        if (value['name'] === summary) {
-           result =  '(dernière note : ' + value['averages']['student'] + ' , moy. de class : ' + value['averages']['studentClass'] + ')';
+       	   if (value['averages']['student'] === -1 || value['averages']['student'] === -1){
+       	   		studentMark = 'Non Noté/Absent';
+       	   } else {
+				studentMark = value['averages']['student']
+       	   }
+           result =  '(dernière note : ' + studentMark + ' , moy. de class : ' + value['averages']['studentClass'] + ')';
        }
     });
 
