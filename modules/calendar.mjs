@@ -45,7 +45,7 @@ class Calendar {
      */
     getJson() {
         var event = {
-            'summary': this.cancelled == true ? this.name + '(ANNULE)' : this.name,
+            'summary': this.cancelled == true ? this.name + '(ANNULÉ)' : this.name,
             'location': this.room,
             'description':  this.getDescription(),
             'colorId' : this.color,
@@ -74,7 +74,7 @@ class Calendar {
     createEvent() {
         let checkEvent = 0;
         this.userEvents.forEach((value) => {
-            if (value['summary'] == this.name || value['summary'] == this.name + '(ANNULE)') {
+            if (value['summary'] == this.name || value['summary'] == this.name + '(ANNULÉ)') {
                 let start = new Date(value['start']);
                 let end = new Date(value['end']);
                 if (getDate.getDateTime(this.start_event) === getDate.getDateTime(start) && getDate.getDateTime(this.end_event) === getDate.getDateTime(end)) {
@@ -169,7 +169,7 @@ class Calendar {
             let start = new Date(value['start']);
             let end = new Date(value['end']);
             if (getDate.getDate(this.start_event) === getDate.getDate(start) && getDate.getDate(this.end_event) === getDate.getDate(end)) {
-                if (this.name === value['summary'] || this.name + '(ANNULE)' === value['summary']) {
+                if (this.name === value['summary'] || this.name + '(ANNULÉ)' === value['summary']) {
                     result = value['idEvent'];
                 }
 
